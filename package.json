@@ -1,0 +1,26 @@
+{
+  "author": "Jack Shen",
+  "dependencies": {},
+  "description": "Terem Technologies Back End Challenge",
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.14.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import-x": "^4.6.1",
+    "eslint-plugin-perfectionist": "^4.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.20.0"
+  },
+  "license": "UNLICENSED",
+  "name": "terem-tech-test",
+  "packageManager": "pnpm@10.8.0",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
+  },
+  "version": "0.0.0"
+}
