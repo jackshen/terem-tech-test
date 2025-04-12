@@ -2,8 +2,14 @@
 /* eslint-disable perfectionist/sort-objects */
 
 import dayjs from "dayjs";
-import { TransformedBomCsvEntry, WeatherDataForMonth } from "../types";
-import { RainfallDataPoint, WeatherDataForMonthMap, WeatherDataForYearMap, WeatherDataMap } from "./processWeatherData";
+
+import type { TransformedBomCsvEntry, WeatherDataForMonth } from "../types";
+import type {
+  RainfallDataPoint,
+  WeatherDataForMonthMap,
+  WeatherDataForYearMap,
+  WeatherDataMap,
+} from "./processWeatherData";
 
 export const mockRainfallDataPoints: RainfallDataPoint[] = [
   {
@@ -1329,4 +1335,6 @@ export const mockWeatherDataFor2019UntilApril1st = {
   Year: "2019",
 };
 
-export const mockWeatherDataMap: WeatherDataMap = new Map([[2019, mockWeatherDataFor2019Map]]);
+export const mockWeatherDataMap: WeatherDataMap = new Map([
+  [2019, mockWeatherDataFor2019Map],
+]);
