@@ -3,7 +3,7 @@ import { writeFile } from "fs/promises";
 
 import type { BomCsvEntry, TransformedBomCsvEntry } from "./types";
 import parseCsv from "./utils/parseCsv";
-// import processWeatherData from "./utils/processWeatherData";
+import processWeatherData from "./utils/processWeatherData";
 import transformBomCsvEntry from "./utils/transformBomCsvEntry";
 
 export const ingestWeatherData = async () => {
@@ -24,11 +24,9 @@ export const ingestWeatherData = async () => {
       transformBomCsvEntry
     );
 
-    // TODO: process data
-    // const result = processWeatherData(data);
+    const result = processWeatherData(data);
 
-    // await writeFile(options.output, JSON.stringify(result, null, 2));
-    await writeFile(options.output, JSON.stringify(data, null, 2));
+    await writeFile(options.output, JSON.stringify(result, null, 2));
 
     console.log(`Successfully ingested BOM weather data to ${options.output}`);
   } catch (error) {
