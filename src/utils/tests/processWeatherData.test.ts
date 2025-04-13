@@ -1,3 +1,10 @@
+import processWeatherData, {
+  createWeatherDataMap,
+  getLongestNumberDaysRaining,
+  prefixWeatherDataGroup,
+  processWeatherDataForMonth,
+  processWeatherDataForYear,
+} from "../processWeatherData";
 import {
   mockParsedBomEntries,
   mockRainfallDataPoints,
@@ -8,14 +15,7 @@ import {
   mockWeatherDataMap,
   mockWeatherMapForJanuary,
   mockWeatherMapForJanuaryUntil13th,
-} from "../fixtures";
-import processWeatherData, {
-  createWeatherDataMap,
-  getLongestNumberDaysRaining,
-  prefixWeatherDataGroup,
-  processWeatherDataForMonth,
-  processWeatherDataForYear,
-} from "../processWeatherData";
+} from "./fixtures";
 
 describe("createWeatherDataMap", () => {
   it("creates a Map of weather data", () => {
@@ -31,7 +31,9 @@ describe("getLongestNumberDaysRaining", () => {
   });
 
   it("gets the correct longest numbers of days raining when provided unordered data", () => {
-    const shuffledDataPoints = mockRainfallDataPoints.sort(() => Math.random() - 0.5);
+    const shuffledDataPoints = mockRainfallDataPoints.sort(
+      () => Math.random() - 0.5
+    );
 
     expect(getLongestNumberDaysRaining(shuffledDataPoints)).toBe(8);
   });
@@ -41,7 +43,10 @@ describe("getLongestNumberDaysRaining", () => {
 
     const missingDataPoints = [
       ...mockRainfallDataPoints.slice(0, indexToRemoveAt),
-      ...mockRainfallDataPoints.slice(indexToRemoveAt + 1, mockParsedBomEntries.length),
+      ...mockRainfallDataPoints.slice(
+        indexToRemoveAt + 1,
+        mockParsedBomEntries.length
+      ),
     ];
 
     expect(getLongestNumberDaysRaining(missingDataPoints)).toBe(6);
@@ -76,23 +81,39 @@ describe("processWeatherData", () => {
 
 describe("processWeatherDataForMonth", () => {
   it("processes weather data into a Monthly Aggregate structure", () => {
-    const { weatherDataForMonth } = processWeatherDataForMonth(2019, 1, mockWeatherDataForJanuaryMap);
+    const { weatherDataForMonth } = processWeatherDataForMonth(
+      2019,
+      1,
+      mockWeatherDataForJanuaryMap
+    );
 
     expect(weatherDataForMonth).toStrictEqual(mockWeatherMapForJanuary);
   });
 
   it("processes weather data into flat array of rainfall data points for the month", () => {
-    const { rainfallDataPointsForMonth } = processWeatherDataForMonth(2019, 1, mockWeatherDataForJanuaryMap);
+    const { rainfallDataPointsForMonth } = processWeatherDataForMonth(
+      2019,
+      1,
+      mockWeatherDataForJanuaryMap
+    );
 
-    expect(rainfallDataPointsForMonth).toStrictEqual(mockRainfallDataPoints.slice(0, 31));
+    expect(rainfallDataPointsForMonth).toStrictEqual(
+      mockRainfallDataPoints.slice(0, 31)
+    );
   });
 
   it("does not process data that is in the future", () => {
     jest.useFakeTimers().setSystemTime(new Date("2019-01-13"));
 
-    const { weatherDataForMonth } = processWeatherDataForMonth(2019, 1, mockWeatherDataForJanuaryMap);
+    const { weatherDataForMonth } = processWeatherDataForMonth(
+      2019,
+      1,
+      mockWeatherDataForJanuaryMap
+    );
 
-    expect(weatherDataForMonth).toStrictEqual(mockWeatherMapForJanuaryUntil13th);
+    expect(weatherDataForMonth).toStrictEqual(
+      mockWeatherMapForJanuaryUntil13th
+    );
 
     jest.clearAllTimers();
   });
@@ -100,7 +121,10 @@ describe("processWeatherDataForMonth", () => {
 
 describe("processWeatherDataForYear", () => {
   it("processes weather data into a Yearly Aggregate structure", () => {
-    const { weatherDataForYear } = processWeatherDataForYear(2019, mockWeatherDataFor2019Map);
+    const { weatherDataForYear } = processWeatherDataForYear(
+      2019,
+      mockWeatherDataFor2019Map
+    );
 
     expect(weatherDataForYear).toStrictEqual(mockWeatherDataFor2019);
   });
@@ -108,9 +132,14 @@ describe("processWeatherDataForYear", () => {
   it("does not process data that is in the future", () => {
     jest.useFakeTimers().setSystemTime(new Date("2019-04-01"));
 
-    const { weatherDataForYear } = processWeatherDataForYear(2019, mockWeatherDataFor2019Map);
+    const { weatherDataForYear } = processWeatherDataForYear(
+      2019,
+      mockWeatherDataFor2019Map
+    );
 
-    expect(weatherDataForYear).toStrictEqual(mockWeatherDataFor2019UntilApril1st);
+    expect(weatherDataForYear).toStrictEqual(
+      mockWeatherDataFor2019UntilApril1st
+    );
 
     jest.clearAllTimers();
   });

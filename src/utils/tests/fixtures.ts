@@ -3,13 +3,13 @@
 
 import dayjs from "dayjs";
 
-import type { TransformedBomCsvEntry, WeatherDataForMonth } from "../types";
+import type { TransformedBomCsvEntry, WeatherDataForMonth } from "../../types";
 import type {
   RainfallDataPoint,
   WeatherDataForMonthMap,
   WeatherDataForYearMap,
   WeatherDataMap,
-} from "./processWeatherData";
+} from "../processWeatherData";
 
 export const mockRainfallDataPoints: RainfallDataPoint[] = [
   {
