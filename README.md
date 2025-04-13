@@ -1,4 +1,4 @@
-# terem-tech-test
+# Terem tech test
 
 Thank you for considering my application! This directory contains my attempt at the technical test that was given.
 
@@ -16,6 +16,10 @@ pnpm install
 ```sh
 pnpm start -i <path/to/bom_file.csv> -o <path/to/output_file.json>
 ```
+
+## Demonstration
+
+https://github.com/user-attachments/assets/9f5bf218-c271-46e9-bc8a-3ea3b383f0aa
 
 ## Technologies used
 
