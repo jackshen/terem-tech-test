@@ -10,7 +10,7 @@ Thank you for considering my application! This directory contains my attempt at 
 pnpm install
 ```
 
-2. Download the BOM historical rainfall data in `.csv` file format.
+2. Download the BOM historical rainfall data in `.csv` file format from [here](http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_nccObsCode=136&p_display_type=dailyDataFile&p_startYear=&p_c=&p_stn_num=066062).
 3. To ingest the data, run the following CLI script. The `-o` argument is optional, if not provided the output file will be in the same directory as the script was run.
 
 ```sh
@@ -38,8 +38,8 @@ Stage 1 involves ingesting the data in its raw form from the BOM `.csv` and norm
 
 Stage 2 deals with all the logic required to combine every individual point of rainfall data into useful information grouped by year and month. Data first needs to be organised as prerequisite for some of the calculations, for example:
 
-- All rainfall data points must be group by month and ordered in order to calculate the median rainfall for a given month.
-- All rainfall data points must be grouped by year and ordered in order to calculate the longest consecutive days of rain.
+- All rainfall data points must be group by month and ordered to calculate the median rainfall for a given month.
+- All rainfall data points must be grouped by year and ordered to calculate the longest consecutive days of rain.
 
 To achieve this, I have written a function that iterates through each rainfall data point (which describes the amount of rain for a single date) and stores this information in a Map that is structured by year, followed by month, and then day. This is then used as the skeleton on which the final format (which is similarly structured) is built on.
 
@@ -47,7 +47,7 @@ The final stage is the most straightforward: it simply writes the completed data
 
 ## Testing
 
-I have written unit tests for every function in order to verify and demonstrate the assumptions I have made. To run Jest unit tests:
+I have written unit tests for every function to verify and demonstrate the assumptions I have made. To run Jest unit tests:
 
 ```sh
 pnpm test
